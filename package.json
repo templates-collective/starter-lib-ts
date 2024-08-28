@@ -1,0 +1,59 @@
+{
+  "name": "starter-lib-ts",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.15.8",
+  "description": "TypeScript Library starter template, supports ESM and CJS.",
+  "author": "Kieran Wong <kieranwong9865@gmail.com> (https://github.com/kieranwong9865/)",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "library",
+    "starter"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "simple-git-hooks",
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "release": "bumpp && pnpm build && pnpm publish"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.6.2",
+    "bumpp": "^9.2.1",
+    "conventional-changelog-cli": "^4.1.0",
+    "eslint": "^8.57.0",
+    "jsdom": "^24.1.1",
+    "lint-staged": "^15.2.0",
+    "rimraf": "^5.0.5",
+    "simple-git-hooks": "^2.9.0",
+    "tsup": "^8.2.3",
+    "typescript": "^5.3.3",
+    "vitest": "^2.0.5"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "pnpm lint:fix"
+  }
+}
